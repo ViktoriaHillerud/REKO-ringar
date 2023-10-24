@@ -258,7 +258,7 @@ const EditProfile = () => {
                 placeholder={user.social[index] || ""}
                 onChange={(e) =>
                   handleChangeArray(`social${index + 1}`, e.target.value, "social")
-                }
+                } 
               />
             </div>
           ))}
