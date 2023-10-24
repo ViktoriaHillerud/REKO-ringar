@@ -10,10 +10,7 @@ const PORT = 4000;
 
 app.use(cookieParser());
 app.use(
-    cors<express.Request>({
-        origin: ['https://rekoringar.netlify.app/'], 
-        credentials: true,
-    })
+    cors<express.Request>()
 )
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
