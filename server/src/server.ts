@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(
     cors<express.Request>({
         origin: 'https://*.netlify.app', 
-        credentials: true,
+        credentials: true, 
     })
 )
 app.use(express.json());
