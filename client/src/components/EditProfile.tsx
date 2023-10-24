@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import "../styles/profile.css";
 import { deleteUser, getOneUser, updateUser } from "../helpers/api";
 import { useNavigate } from "react-router-dom";
@@ -90,7 +90,7 @@ const EditProfile = () => {
   }, []);
 
   const handleTextareaChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = event.target;
     setUser((prevUser) => ({
@@ -99,54 +99,25 @@ const EditProfile = () => {
     }));
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    const fileInput = document.getElementById("img") as HTMLInputElement;
-
-    if (
-      id.startsWith("img") &&
-      fileInput &&
-      fileInput.files &&
-      fileInput.files.length > 0
-    ) {
-      const file = fileInput.files[0];
-      if (file) {
-        setUser((prevUser: UserProfile | null) => ({
-          ...prevUser!,
-          img: URL.createObjectURL(file),
-        }));
+  const handleChangeArray = (
+    id: string,
+    value: string,
+    arrayName: "tags" | "social" | "gallery"
+  ) => {
+    setUser((prevUser) => {
+      if (prevUser) {
+        return {
+          ...prevUser,
+          [arrayName]: prevUser[arrayName].map((item, index) =>
+            id === `${arrayName}${index + 1}` ? value : item
+          ),
+        };
       }
-      return;
-    } else if (id.startsWith("tag")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        tags: prevUser!.tags.map((tag, index) =>
-          id === `tag${index + 1}` ? value : tag
-        ),
-      }));
-    } else if (id.startsWith("social")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        social: prevUser!.social.map((item, index) =>
-          id === `social${index + 1}` ? value : item
-        ),
-      }));
-    } else if (id.startsWith("gallery")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        gallery: prevUser!.gallery.map((item, index) =>
-          id === `gallery${index + 1}` ? value : item
-        ),
-      }));
-    } else {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        [id]: value,
-      }));
-    }
+      return prevUser;
+    });
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const uid = Cookies.get("uid");
@@ -248,7 +219,7 @@ const EditProfile = () => {
             id="name"
             type="text"
             placeholder={user.name}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
           ></input>
 
           <label>Ändra beskrivning:</label>
@@ -263,7 +234,7 @@ const EditProfile = () => {
             id="other"
             type="text"
             placeholder={user.other}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
           ></input>
 
           <label>Ändra address:</label>
@@ -271,7 +242,7 @@ const EditProfile = () => {
             id="address"
             type="text"
             placeholder={user.address}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
           ></input>
 
           <label>Ändra telefonnummer:</label>
@@ -279,7 +250,7 @@ const EditProfile = () => {
             id="phone"
             type="text"
             placeholder={user.phone}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
           ></input>
 
           <label>Ändra sociala medie-länkar:</label>
@@ -287,13 +258,17 @@ const EditProfile = () => {
             id="social1"
             type="text"
             placeholder={user.social[0]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("social1", e.target.value, "social")
+            }
           ></input>
           <input
             id="social2"
             type="text"
             placeholder={user.social[1]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("social2", e.target.value, "social")
+            }
           ></input>
 
           <label>Ändra profilbild:</label>
@@ -301,7 +276,7 @@ const EditProfile = () => {
             id="img"
             type="file"
             placeholder={user.img}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
           ></input>
 
           <label>Ändra taggar (max 4)</label>
@@ -310,28 +285,28 @@ const EditProfile = () => {
             id="tag1"
             type="text"
             placeholder={user.tags[0]}
-            onChange={handleChange}
+            onChange={(e) => handleChangeArray("tag1", e.target.value, "tags")}
           ></input>
           <input
             style={tagStyle}
             id="tag2"
             type="text"
             placeholder={user.tags[1]}
-            onChange={handleChange}
+            onChange={(e) => handleChangeArray("tag2", e.target.value, "tags")}
           ></input>
           <input
             style={tagStyle}
             id="tag3"
             type="text"
             placeholder={user.tags[2]}
-            onChange={handleChange}
+            onChange={(e) => handleChangeArray("tag3", e.target.value, "tags")}
           ></input>
           <input
             style={tagStyle}
             id="tag4"
             type="text"
             placeholder={user.tags[3]}
-            onChange={handleChange}
+            onChange={(e) => handleChangeArray("tag4", e.target.value, "tags")}
           ></input>
 
           <label>Ändra galleri (max 6)</label>
@@ -339,37 +314,49 @@ const EditProfile = () => {
             id="gallery1"
             type="text"
             placeholder={user.gallery[0]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery1", e.target.value, "gallery")
+            }
           ></input>
           <input
             id="gallery2"
             type="text"
             placeholder={user.gallery[1]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery2", e.target.value, "gallery")
+            }
           ></input>
           <input
             id="gallery3"
             type="text"
             placeholder={user.gallery[2]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery3", e.target.value, "gallery")
+            }
           ></input>
           <input
             id="gallery4"
             type="text"
             placeholder={user.gallery[3]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery4", e.target.value, "gallery")
+            }
           ></input>
           <input
             id="gallery5"
             type="text"
             placeholder={user.gallery[4]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery5", e.target.value, "gallery")
+            }
           ></input>
           <input
             id="gallery6"
             type="text"
             placeholder={user.gallery[5]}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleChangeArray("gallery6", e.target.value, "gallery")
+            }
           ></input>
 
           <Button style={btnStyle}>Ändra mina uppgifter</Button>
