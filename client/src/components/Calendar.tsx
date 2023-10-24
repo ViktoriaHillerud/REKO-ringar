@@ -219,7 +219,7 @@ const Calendar = () => {
         Authorization: `Bearer ${authToken}`,
       };
 
-      await axios.post("http://localhost:4000/createevent", eventData, {
+      await axios.post("https://officialu09-production.up.railway.app/createevent", eventData, {
         headers,
         withCredentials: true,
       });

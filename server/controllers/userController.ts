@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import { User, UserDoc } from "../models/userSchema";
 import { env } from "process";
 require("dotenv").config();
-const url = "http://localhost:4000/";
+const url = "https://officialu09-production.up.railway.app/";
 interface JwtPayload {
   _id: string;
 }
