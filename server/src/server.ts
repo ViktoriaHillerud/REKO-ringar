@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 app.use(cookieParser());
 app.use(
     cors<express.Request>({
-        origin: 'https://main--rekoringar.netlify.app', 
+        origin: ['https://main--rekoringar.netlify.app', 'https://rekoringar.netlify.app'], 
         credentials: true,
     })
 );
