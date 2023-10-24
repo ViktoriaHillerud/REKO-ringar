@@ -7,12 +7,11 @@ import './db';
 import router from "./routes/routes";
 const PORT = 4000;
 
-const allowedOrigins = ['http://127.0.0.1:5173'];
 
 app.use(cookieParser());
 app.use(
     cors<express.Request>({
-        origin: 'https://rekoringar.netlify.app', 
+        origin: 'https://rekoringar.netlify.app/', 
         credentials: true,
     })
 )
