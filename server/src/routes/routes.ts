@@ -37,7 +37,9 @@ const router = express.Router();
 
 /*-------USER-ROUTES-------*/
 
-
+router.get('/', (req: express.Request, res: express.Response) => {
+    res.status(200).send('Hello World')
+})
 // Register route
 router.post("/register", async (req: Request, res: Response) => {
 	const user = await createUser(req);
