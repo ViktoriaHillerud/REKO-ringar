@@ -1,0 +1,38 @@
+h1 {
+  margin-top: 10vh;
+  margin-left: 4vw;
+  margin-bottom: 5vh;
+}
+
+.producers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.producers-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.producers-card {
+  justify-content: space-between;
+  display: flex;
+  gap: 3%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.producers-card span {
+  font-size: small;
+  font-weight: 100;
+}
+
+.searched-producer {
+  margin: 50px;
+}
