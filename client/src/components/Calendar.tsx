@@ -231,7 +231,7 @@ const Calendar = () => {
 
   const handleDatesSet = async () => {
     const response = await axios.get<ResponseData>(
-      "http://localhost:4000/events/users"
+      "https://officialu09-production.up.railway.app/events/users"
     );
 
     setEventData(response.data.users.data.map((item) => item.events).flat());
