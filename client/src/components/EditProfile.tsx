@@ -106,11 +106,13 @@ const EditProfile = () => {
   ) => {
     setUser((prevUser) => {
       if (prevUser) {
+        const updatedArray = prevUser[arrayName].map((item, index) =>
+          id === `${arrayName}${index + 1}` ? value : item
+        );
+
         return {
           ...prevUser,
-          [arrayName]: prevUser[arrayName].map((item, index) =>
-            id === `${arrayName}${index + 1}` ? value : item
-          ),
+          [arrayName]: updatedArray,
         };
       }
       return prevUser;
@@ -254,22 +256,23 @@ const EditProfile = () => {
           ></input>
 
           <label>Ändra sociala medie-länkar:</label>
-          <input
-            id="social1"
-            type="text"
-            placeholder={user.social[0]}
-            onChange={(e) =>
-              handleChangeArray("social1", e.target.value, "social")
-            }
-          ></input>
-          <input
-            id="social2"
-            type="text"
-            placeholder={user.social[1]}
-            onChange={(e) =>
-              handleChangeArray("social2", e.target.value, "social")
-            }
-          ></input>
+          {Array.from({ length: 2 }).map((_, index) => (
+            <div key={index}>
+              <input
+                style={tagStyle}
+                id={`social${index + 1}`}
+                type="text"
+                placeholder={user.social[index] || ""}
+                onChange={(e) =>
+                  handleChangeArray(
+                    `social${index + 1}`,
+                    e.target.value,
+                    "social"
+                  )
+                }
+              />
+            </div>
+          ))}
 
           <label>Ändra profilbild:</label>
           <input
@@ -280,84 +283,38 @@ const EditProfile = () => {
           ></input>
 
           <label>Ändra taggar (max 4)</label>
-          <input
-            style={tagStyle}
-            id="tag1"
-            type="text"
-            placeholder={user.tags[0]}
-            onChange={(e) => handleChangeArray("tag1", e.target.value, "tags")}
-          ></input>
-          <input
-            style={tagStyle}
-            id="tag2"
-            type="text"
-            placeholder={user.tags[1]}
-            onChange={(e) => handleChangeArray("tag2", e.target.value, "tags")}
-          ></input>
-          <input
-            style={tagStyle}
-            id="tag3"
-            type="text"
-            placeholder={user.tags[2]}
-            onChange={(e) => handleChangeArray("tag3", e.target.value, "tags")}
-          ></input>
-          <input
-            style={tagStyle}
-            id="tag4"
-            type="text"
-            placeholder={user.tags[3]}
-            onChange={(e) => handleChangeArray("tag4", e.target.value, "tags")}
-          ></input>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index}>
+              <input
+                style={tagStyle}
+                id={`tag${index + 1}`}
+                type="text"
+                placeholder={user.tags[index] || ""}
+                onChange={(e) =>
+                  handleChangeArray(`tag${index + 1}`, e.target.value, "tags")
+                }
+              />
+            </div>
+          ))}
 
           <label>Ändra galleri (max 6)</label>
-          <input
-            id="gallery1"
-            type="text"
-            placeholder={user.gallery[0]}
-            onChange={(e) =>
-              handleChangeArray("gallery1", e.target.value, "gallery")
-            }
-          ></input>
-          <input
-            id="gallery2"
-            type="text"
-            placeholder={user.gallery[1]}
-            onChange={(e) =>
-              handleChangeArray("gallery2", e.target.value, "gallery")
-            }
-          ></input>
-          <input
-            id="gallery3"
-            type="text"
-            placeholder={user.gallery[2]}
-            onChange={(e) =>
-              handleChangeArray("gallery3", e.target.value, "gallery")
-            }
-          ></input>
-          <input
-            id="gallery4"
-            type="text"
-            placeholder={user.gallery[3]}
-            onChange={(e) =>
-              handleChangeArray("gallery4", e.target.value, "gallery")
-            }
-          ></input>
-          <input
-            id="gallery5"
-            type="text"
-            placeholder={user.gallery[4]}
-            onChange={(e) =>
-              handleChangeArray("gallery5", e.target.value, "gallery")
-            }
-          ></input>
-          <input
-            id="gallery6"
-            type="text"
-            placeholder={user.gallery[5]}
-            onChange={(e) =>
-              handleChangeArray("gallery6", e.target.value, "gallery")
-            }
-          ></input>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index}>
+              <input
+                style={tagStyle}
+                id={`gallery${index + 1}`}
+                type="text"
+                placeholder={user.gallery[index] || ""}
+                onChange={(e) =>
+                  handleChangeArray(
+                    `gallery${index + 1}`,
+                    e.target.value,
+                    "gallery"
+                  )
+                }
+              />
+            </div>
+          ))}
 
           <Button style={btnStyle}>Ändra mina uppgifter</Button>
         </form>
