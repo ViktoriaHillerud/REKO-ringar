@@ -100,23 +100,16 @@ const EditProfile = () => {
   };
 
   const handleChangeArray = (
-    id: string,
+    arrayName: string,
     value: string,
-    arrayName: "tags" | "social" | "gallery"
+    fieldName: "tags" | "social" | "gallery"
   ) => {
-    setUser((prevUser) => {
-      if (prevUser) {
-        const updatedArray = prevUser[arrayName].map((item, index) =>
-          id === `${arrayName}${index + 1}` ? value : item
-        );
-
-        return {
-          ...prevUser,
-          [arrayName]: updatedArray,
-        };
-      }
-      return prevUser;
-    });
+    setUser((prevUser) => ({
+      ...prevUser!,
+      [fieldName]: prevUser![fieldName].map((item, index) =>
+        arrayName === `${fieldName}${index + 1}` ? value : item
+      ),
+    }));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -264,11 +257,7 @@ const EditProfile = () => {
                 type="text"
                 placeholder={user.social[index] || ""}
                 onChange={(e) =>
-                  handleChangeArray(
-                    `social${index + 1}`,
-                    e.target.value,
-                    "social"
-                  )
+                  handleChangeArray(`social${index + 1}`, e.target.value, "social")
                 }
               />
             </div>
@@ -300,17 +289,13 @@ const EditProfile = () => {
           <label>Ändra galleri (max 6)</label>
           {Array.from({ length: 6 }).map((_, index) => (
             <div key={index}>
-              <input
+             <input
                 style={tagStyle}
                 id={`gallery${index + 1}`}
                 type="text"
                 placeholder={user.gallery[index] || ""}
                 onChange={(e) =>
-                  handleChangeArray(
-                    `gallery${index + 1}`,
-                    e.target.value,
-                    "gallery"
-                  )
+                  handleChangeArray(`gallery${index + 1}`, e.target.value, "gallery")
                 }
               />
             </div>
