@@ -21,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 app.set('trust proxy', 1)
 
+app.get('/', (req: express.Request, res: express.Response) => {
+    res.status(200).send('Hello World')
+})
 
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);
