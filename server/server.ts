@@ -19,6 +19,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
+app.set('trust proxy', 1)
 
 
 app.listen(PORT, () => {
