@@ -14,10 +14,10 @@ app.options('*', cors()); // Enable preflight for all routes
 app.use(cookieParser());
 app.use(
     cors<express.Request>({
-        origin: 'https://*.netlify.app', 
-        credentials: true, 
+        origin: 'https://rekoringar.netlify.app', 
+        credentials: true,
     })
-)
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
