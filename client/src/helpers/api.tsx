@@ -171,7 +171,7 @@ export const deleteEvent = async (eventId: string, uid: string) => {
 
     // Send a DELETE request to your backend endpoint for event deletion
     const response = await axios.delete(
-      `http://localhost:4000/events/delete?eventId=${eventId}&uid=${uid}`,
+      `${url}/events/delete?eventId=${eventId}&uid=${uid}`,
       {
         headers,
         withCredentials: true,
