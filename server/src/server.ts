@@ -9,7 +9,7 @@ import './db';
 import router from "./routes/routes";
 const PORT = process.env.PORT || 4000;
 
-app.options('*', cors()); // Enable preflight for all routes
+
 
 app.use(cookieParser());
 app.use(
