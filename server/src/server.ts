@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 import './db';
 import router from "./routes/routes";
-const PORT = 4000;
+const PORT = "https://officialu09-production.up.railway.app/" || 4000;
 
 
 app.use(cookieParser());
