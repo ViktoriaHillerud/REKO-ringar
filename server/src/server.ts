@@ -3,9 +3,11 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 const app = express();
+import { env } from "process";
+require("dotenv").config();
 import './db';
 import router from "./routes/routes";
-const PORT = "https://officialu09-production.up.railway.app/" || 4000;
+const PORT = process.env.PORT || 4000;
 
 
 app.use(cookieParser());
