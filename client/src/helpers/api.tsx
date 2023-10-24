@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 const url = "https://officialu09-production.up.railway.app/"; // "http://localhost:4000"
 
-interface UserAPI {
+interface UserAPI { 
   name?: string;
   email: string;
   password: string;
