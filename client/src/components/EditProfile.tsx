@@ -118,29 +118,35 @@ const EditProfile = () => {
       }
       return;
     } else if (id.startsWith("tag")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        tags: prevUser!.tags.map((tag, index) =>
-          id === `tag${index + 1}` ? value : tag
-        ),
-      }));
-	  console.log("Updated User:", user);
+      const index = parseInt(id.replace("tag", ""), 10) - 1; // Calculate index
+      setUser((prevUser: UserProfile | null) => {
+        const updatedTags = [...(prevUser?.tags || [])]; // Initialize with empty array if undefined
+        updatedTags[index] = value;
+        return {
+          ...prevUser!,
+          tags: updatedTags,
+        };
+      });
     } else if (id.startsWith("social")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        social: prevUser!.social.map((item, index) =>
-          id === `social${index + 1}` ? value : item
-        ),
-      }));
-	  console.log("Updated User:", user);
+      const index = parseInt(id.replace("social", ""), 10) - 1; // Calculate index
+      setUser((prevUser: UserProfile | null) => {
+        const updatedSocial = [...(prevUser?.social || [])]; // Initialize with empty array if undefined
+        updatedSocial[index] = value;
+        return {
+          ...prevUser!,
+          social: updatedSocial,
+        };
+      });
     } else if (id.startsWith("gallery")) {
-      setUser((prevUser: UserProfile | null) => ({
-        ...prevUser!,
-        gallery: prevUser!.gallery.map((item, index) =>
-          id === `gallery${index + 1}` ? value : item
-        ),
-      }));
-	  console.log("Updated User:", user);
+      const index = parseInt(id.replace("gallery", ""), 10) - 1; // Calculate index
+      setUser((prevUser: UserProfile | null) => {
+        const updatedGallery = [...(prevUser?.gallery || [])]; // Initialize with empty array if undefined
+        updatedGallery[index] = value;
+        return {
+          ...prevUser!,
+          gallery: updatedGallery,
+        };
+      });
     } else {
       setUser((prevUser: UserProfile | null) => ({
         ...prevUser!,
