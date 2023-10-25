@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../helpers/api";
 import Reko from "../assets/logga-reko-cirkel 2.png";
 import "../index.css";
@@ -73,7 +73,7 @@ const Login = () => {
           ></input>
           <button>Logga in</button>
 
-          <a href="/register">Inte registrerad ännu?</a>
+          <Link to="/register">Inte registrerad ännu?</Link>
         </form>
         {errorMessage}
       </div>

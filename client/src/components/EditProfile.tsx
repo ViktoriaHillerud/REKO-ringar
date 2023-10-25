@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/profile.css";
 import { deleteUser, getOneUser, updateUser } from "../helpers/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Cookies from "js-cookie";
 import { HiArrowLeft } from "react-icons/hi2";
@@ -240,15 +240,15 @@ const EditProfile = () => {
 
   return (
     <div className="editForm">
-      <a
+      <Link
         style={{ fontSize: "1.25rem", textDecoration: "none", color: "green" }}
-        href="/profile"
+        to="/profile"
       >
         <HiArrowLeft
           style={{ fontSize: "2rem", marginTop: "20px" }}
         ></HiArrowLeft>
         Tillbaka
-      </a>
+      </Link>
 
       {user && (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
