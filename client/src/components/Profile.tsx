@@ -77,7 +77,7 @@ const Profile = () => {
         }
 
         const response = await getOneUser(uid);
-        console.log(response.user);
+        // console.log(response.user);
         setUserLoggedIn(response.user);
       } catch (error) {
         console.error(error);
@@ -102,7 +102,7 @@ const Profile = () => {
           throw new Error("User not found");
         }
         setUser(response.user);
-        console.log(response.user);
+        // console.log(response.user);
       } catch (error) {
         console.error(error);
       }

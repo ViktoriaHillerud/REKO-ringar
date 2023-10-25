@@ -271,7 +271,7 @@ const Calendar = () => {
       }
 
       const response = await getOneUser(uid);
-      console.log(response.user);
+    //   console.log(response.user);
 
       if (response && response.user && response.user.events) {
         setUser(response.user);
