@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/profile.css";
 import Button from "./Button";
 import { getOneUser, getOneUserPublic, logout } from "../helpers/api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import Cookies from "js-cookie";
@@ -288,7 +288,7 @@ const Profile = () => {
                     {userLoggedIn.events && userLoggedIn.events.length > 0
                       ? userLoggedIn.events.map((event, index) => (
                           <div key={index}>
-                            <a href="/calendar">{event.title}</a>
+                            <Link to="/calendar">{event.title}</Link>
                             <p>
                               Start:{" "}
                               {moment(
