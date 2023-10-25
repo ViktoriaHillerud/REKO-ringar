@@ -314,7 +314,7 @@ const Calendar = () => {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [userLoggedIn]);
 
   const handleUpdateEvnt = (eventId: string) => {
     console.log("Updating event with ID:", eventId);
