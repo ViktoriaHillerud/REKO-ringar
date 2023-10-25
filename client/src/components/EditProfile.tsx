@@ -124,6 +124,7 @@ const EditProfile = () => {
           id === `tag${index + 1}` ? value : tag
         ),
       }));
+	  console.log("Updated User:", user);
     } else if (id.startsWith("social")) {
       setUser((prevUser: UserProfile | null) => ({
         ...prevUser!,
@@ -131,6 +132,7 @@ const EditProfile = () => {
           id === `social${index + 1}` ? value : item
         ),
       }));
+	  console.log("Updated User:", user);
     } else if (id.startsWith("gallery")) {
       setUser((prevUser: UserProfile | null) => ({
         ...prevUser!,
@@ -138,6 +140,7 @@ const EditProfile = () => {
           id === `gallery${index + 1}` ? value : item
         ),
       }));
+	  console.log("Updated User:", user);
     } else {
       setUser((prevUser: UserProfile | null) => ({
         ...prevUser!,
