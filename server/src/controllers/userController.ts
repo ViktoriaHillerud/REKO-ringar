@@ -209,13 +209,18 @@ export const updateUser = async (data: Request) => {
     }
 
     if (insert) {
-      const user = await User.findOneAndUpdate({ _id: data.body._id }, insert, {
-        new: true,
-      });
-	  console.log("Updated Insert:", insert);
-	  console.log("Updated user:", user);
-      return { error: null, data: user };
-    }
+		const user = await User.findOneAndUpdate({ _id: data.body._id }, insert, {
+		  new: true,
+		});
+		console.log("Updated User Data:", user);
+		console.log("Updated Insert Data:", insert);
+		if (!user) {
+		  return { error: "User not found" };
+		}
+		return { error: null, data: user };
+	  } else {
+		return { error: "No data to update" };
+	  }
   } catch (error: unknown) {
     if (error instanceof Error) {
       return { error: { message: error.message }, data: null };
