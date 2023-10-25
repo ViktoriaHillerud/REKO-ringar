@@ -177,7 +177,7 @@ const Profile = () => {
                 {user && user.events
                   ? user.events.map((event, index) => (
                       <div key={index}>
-                        <a href="/calendar">{event.title}</a>
+                        <Link to="/calendar">{event.title}</Link>
                         <p>
                           Start:{" "}
                           {moment(event.start, "YYYY-MM-DDTHH:mm:ss").format(
