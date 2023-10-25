@@ -213,7 +213,7 @@ export const updateUser = async (data: Request) => {
 		  new: true,
 		});
 		console.log("Updated User Data:", user);
-		console.log("Updated Insert Data:", insert);
+		console.log("Updated Insert Data:", insert); 
 		if (!user) {
 		  return { error: "User not found" };
 		}
