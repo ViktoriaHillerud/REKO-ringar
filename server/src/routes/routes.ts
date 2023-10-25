@@ -24,7 +24,7 @@ import path from "path";
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-	  cb(null, path.join(__dirname, 'images')); // Use an absolute path
+	  cb(null, path.join(__dirname, 'src')); // Use an absolute path
 	},
 	filename: function (req, file, cb) {
 	  const ext = path.extname(file.originalname);
