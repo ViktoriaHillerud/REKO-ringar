@@ -24,13 +24,14 @@ import path from "path";
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './images')
-	  }, // Use an absolute path
+	  cb(null, path.join(__dirname, 'images')); // Use an absolute path
+	},
 	filename: function (req, file, cb) {
-		const ext = path.extname(file.originalname);
-		cb(null, Date.now() + ext);
+	  const ext = path.extname(file.originalname);
+	  cb(null, Date.now() + ext);
 	}
-});
+  });
+  
 const upload = multer({ storage: storage });
 
 const router = express.Router(); 
