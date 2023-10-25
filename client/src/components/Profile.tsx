@@ -222,7 +222,10 @@ const Profile = () => {
                   Sociala medier:
                   {user.social.map((item, index) => (
                     <a key={index} target="_blank" href={item}>
-                      <p>{item.slice(12, 20)}</p>
+                      <br></br>
+                          <span>
+                            {item.slice(12, 20)} <br></br>
+                          </span>
                     </a>
                   ))}
                 </h6>
