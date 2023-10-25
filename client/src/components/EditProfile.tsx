@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/profile.css";
 import { deleteUser, getOneUser, updateUser } from "../helpers/api";
 import { useNavigate } from "react-router-dom";
@@ -90,7 +90,7 @@ const EditProfile = () => {
   }, []);
 
   const handleTextareaChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { id, value } = event.target;
     setUser((prevUser) => ({
@@ -99,20 +99,54 @@ const EditProfile = () => {
     }));
   };
 
-  const handleChangeArray = (
-    arrayName: string,
-    value: string,
-    fieldName: "tags" | "social" | "gallery"
-  ) => {
-    setUser((prevUser) => ({
-      ...prevUser!,
-      [fieldName]: prevUser![fieldName].map((item, index) =>
-        arrayName === `${fieldName}${index + 1}` ? value : item
-      ),
-    }));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+    const fileInput = document.getElementById("img") as HTMLInputElement;
+
+    if (
+      id.startsWith("img") &&
+      fileInput &&
+      fileInput.files &&
+      fileInput.files.length > 0
+    ) {
+      const file = fileInput.files[0];
+      if (file) {
+        setUser((prevUser: UserProfile | null) => ({
+          ...prevUser!,
+          img: URL.createObjectURL(file),
+        }));
+      }
+      return;
+    } else if (id.startsWith("tag")) {
+      setUser((prevUser: UserProfile | null) => ({
+        ...prevUser!,
+        tags: prevUser!.tags.map((tag, index) =>
+          id === `tag${index + 1}` ? value : tag
+        ),
+      }));
+    } else if (id.startsWith("social")) {
+      setUser((prevUser: UserProfile | null) => ({
+        ...prevUser!,
+        social: prevUser!.social.map((item, index) =>
+          id === `social${index + 1}` ? value : item
+        ),
+      }));
+    } else if (id.startsWith("gallery")) {
+      setUser((prevUser: UserProfile | null) => ({
+        ...prevUser!,
+        gallery: prevUser!.gallery.map((item, index) =>
+          id === `gallery${index + 1}` ? value : item
+        ),
+      }));
+    } else {
+      setUser((prevUser: UserProfile | null) => ({
+        ...prevUser!,
+        [id]: value,
+      }));
+    }
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const uid = Cookies.get("uid");
@@ -214,7 +248,7 @@ const EditProfile = () => {
             id="name"
             type="text"
             placeholder={user.name}
-            onChange={handleTextareaChange}
+            onChange={handleChange}
           ></input>
 
           <label>Ändra beskrivning:</label>
@@ -229,7 +263,7 @@ const EditProfile = () => {
             id="other"
             type="text"
             placeholder={user.other}
-            onChange={handleTextareaChange}
+            onChange={handleChange}
           ></input>
 
           <label>Ändra address:</label>
@@ -237,7 +271,7 @@ const EditProfile = () => {
             id="address"
             type="text"
             placeholder={user.address}
-            onChange={handleTextareaChange}
+            onChange={handleChange}
           ></input>
 
           <label>Ändra telefonnummer:</label>
@@ -245,61 +279,98 @@ const EditProfile = () => {
             id="phone"
             type="text"
             placeholder={user.phone}
-            onChange={handleTextareaChange}
+            onChange={handleChange}
           ></input>
 
           <label>Ändra sociala medie-länkar:</label>
-          {Array.from({ length: 2 }).map((_, index) => (
-            <div key={index}>
-              <input
-                style={tagStyle}
-                id={`social${index + 1}`}
-                type="text"
-                placeholder={user.social[index] || ""}
-                onChange={(e) =>
-                  handleChangeArray(`social${index + 1}`, e.target.value, "social")
-                } 
-              />
-            </div>
-          ))}
+          <input
+            id="social1"
+            type="text"
+            placeholder={user.social[0]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="social2"
+            type="text"
+            placeholder={user.social[1]}
+            onChange={handleChange}
+          ></input>
 
           <label>Ändra profilbild:</label>
           <input
             id="img"
             type="file"
             placeholder={user.img}
-            onChange={handleTextareaChange}
+            onChange={handleChange}
           ></input>
 
           <label>Ändra taggar (max 4)</label>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index}>
-              <input
-                style={tagStyle}
-                id={`tag${index + 1}`}
-                type="text"
-                placeholder={user.tags[index] || ""}
-                onChange={(e) =>
-                  handleChangeArray(`tag${index + 1}`, e.target.value, "tags")
-                }
-              />
-            </div>
-          ))}
+          <input
+            style={tagStyle}
+            id="tag1"
+            type="text"
+            placeholder={user.tags[0]}
+            onChange={handleChange}
+          ></input>
+          <input
+            style={tagStyle}
+            id="tag2"
+            type="text"
+            placeholder={user.tags[1]}
+            onChange={handleChange}
+          ></input>
+          <input
+            style={tagStyle}
+            id="tag3"
+            type="text"
+            placeholder={user.tags[2]}
+            onChange={handleChange}
+          ></input>
+          <input
+            style={tagStyle}
+            id="tag4"
+            type="text"
+            placeholder={user.tags[3]}
+            onChange={handleChange}
+          ></input>
 
           <label>Ändra galleri (max 6)</label>
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index}>
-             <input
-                style={tagStyle}
-                id={`gallery${index + 1}`}
-                type="text"
-                placeholder={user.gallery[index] || ""}
-                onChange={(e) =>
-                  handleChangeArray(`gallery${index + 1}`, e.target.value, "gallery")
-                }
-              />
-            </div>
-          ))}
+          <input
+            id="gallery1"
+            type="text"
+            placeholder={user.gallery[0]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="gallery2"
+            type="text"
+            placeholder={user.gallery[1]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="gallery3"
+            type="text"
+            placeholder={user.gallery[2]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="gallery4"
+            type="text"
+            placeholder={user.gallery[3]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="gallery5"
+            type="text"
+            placeholder={user.gallery[4]}
+            onChange={handleChange}
+          ></input>
+          <input
+            id="gallery6"
+            type="text"
+            placeholder={user.gallery[5]}
+            onChange={handleChange}
+          ></input>
 
           <Button style={btnStyle}>Ändra mina uppgifter</Button>
         </form>
