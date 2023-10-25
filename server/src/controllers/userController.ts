@@ -213,6 +213,7 @@ export const updateUser = async (data: Request) => {
         new: true,
       });
 	  console.log("Updated Insert:", insert);
+	  console.log("Updated user:", user);
       return { error: null, data: user };
     }
   } catch (error: unknown) {
