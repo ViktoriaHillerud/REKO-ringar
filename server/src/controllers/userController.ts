@@ -212,6 +212,7 @@ export const updateUser = async (data: Request) => {
       const user = await User.findOneAndUpdate({ _id: data.body._id }, insert, {
         new: true,
       });
+	  console.log("Updated Insert:", insert);
       return { error: null, data: user };
     }
   } catch (error: unknown) {
