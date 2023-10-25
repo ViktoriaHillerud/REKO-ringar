@@ -2,6 +2,8 @@
 
 REKO is an application for producers and consumers to sell and buy locally produced products and freshly produced raw food materials. Consumers can connect through the producers profile on the page, and also easily see when and where the producers will sell on a calendar. Producers are able to register an account to create own events to tell consumers where they will be for extradition, and also be able to edit their profile where they can post info about their business.
 
+The live demo can be found [here](https://rekoringar.netlify.app/)
+
 ### Project Support Features
 * Users can register and login to their accounts
 * Public (non-authenticated) users can view the calendar and search and iew a specifik producers profile.
