@@ -335,7 +335,19 @@ div {
     margin-top: 40em;
   }
 
-  .x-mark {
-    font-size: 4em;
+  .my-events .x-mark {
+    margin-right: 40%;
+    cursor: pointer;
+    font-size: xx-large;
+    display: block;
+  }
+
+  .event-holder {
+    width: 200px;
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
   }
 }
