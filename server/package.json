@@ -5,7 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "build": "tsc && cp -r src/images dist/",
+    "build": "tsc",
     "start": "node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }, 
