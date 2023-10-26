@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../helpers/api";
 import Reko from "../assets/logga-reko-cirkel 2.png";
@@ -14,11 +14,22 @@ const Login = () => {
   const [errorMessage, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    // Check if the user is already logged in when the component loads.
+    const checkLoggedIn = () => {
+      const uidFromCookies = Cookies.get("uid");
+      if (uidFromCookies) {
+        navigate("/");
+      }
+    };
+    checkLoggedIn();
+  }, [navigate]);
+
+  const handleChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
     setError("");
-    setCredentials((before) => ({
-      ...before,
+    setCredentials((prev) => ({
+      ...prev,
       [id]: value,
     }));
   };
@@ -32,7 +43,6 @@ const Login = () => {
 
     try {
       const response = await login(credentials);
-      console.log(response.data);
 
       if (response.data) {
         const { accessToken, uid } = response.data;
@@ -47,14 +57,14 @@ const Login = () => {
       }
     } catch (error) {
       console.error("API request error:", error);
-      return setError("Hmm något knas hände");
+      setError("Hmm något knas hände");
     }
   };
 
   return (
     <div className="login">
       <div className="form-container">
-        <img src={Reko} />
+        <img src={Reko} alt="Reko logo" />
         <h2>Logga in som producent</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -72,7 +82,6 @@ const Login = () => {
             onChange={handleChange}
           ></input>
           <button>Logga in</button>
-
           <Link to="/register">Inte registrerad ännu?</Link>
         </form>
         {errorMessage}
