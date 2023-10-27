@@ -101,23 +101,24 @@ const EditProfile = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
-    const fileInput = document.getElementById("img") as HTMLInputElement;
+    // const fileInput = document.getElementById("img") as HTMLInputElement;
 
-    if (
-      id.startsWith("img") &&
-      fileInput &&
-      fileInput.files &&
-      fileInput.files.length > 0
-    ) {
-      const file = fileInput.files[0];
-      if (file) {
-        setUser((prevUser: UserProfile | null) => ({
-          ...prevUser!,
-          img: URL.createObjectURL(file),
-        }));
-      }
-      return;
-    } else if (id.startsWith("tag")) {
+    // if (
+    //   id.startsWith("img") &&
+    //   fileInput &&
+    //   fileInput.files &&
+    //   fileInput.files.length > 0
+    // ) {
+    //   const file = fileInput.files[0];
+    //   if (file) {
+    //     setUser((prevUser: UserProfile | null) => ({
+    //       ...prevUser!,
+    //       img: URL.createObjectURL(file),
+    //     }));
+    //   }
+    //   return;
+    // } else
+	if (id.startsWith("tag")) {
       const index = parseInt(id.replace("tag", ""), 10) - 1; // Calculate index
       setUser((prevUser: UserProfile | null) => {
         const updatedTags = [...(prevUser?.tags || [])]; // Initialize with empty array if undefined
@@ -251,7 +252,8 @@ const EditProfile = () => {
       </Link>
 
       {user && (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+		/* encType="multipart/form-data" if multer*/
+        <form onSubmit={handleSubmit}>
           <label>Ändra namn:</label>
           <input
             id="name"
@@ -308,7 +310,7 @@ const EditProfile = () => {
           <label>Ändra profilbild:</label>
           <input
             id="img"
-            type="file"
+            type="text"
             placeholder={user.img}
             onChange={handleChange}
           ></input>

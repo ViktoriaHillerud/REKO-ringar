@@ -19,20 +19,20 @@ import {
 } from "../controllers/eventController";
 import { protectRoute } from "../middleware/authMiddleware";
 import { access } from "fs";
-import multer from 'multer';
-import path from "path";
+// import multer from 'multer';
+// import path from "path";
 
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-	  cb(null, path.join(__dirname, 'uploads')); // Use an absolute path
-	},
-	filename: function (req, file, cb) {
-	  const ext = path.extname(file.originalname);
-	  cb(null, Date.now() + ext);
-	}
-  });
+// const storage = multer.diskStorage({
+// 	destination: function (req, file, cb) {
+// 	  cb(null, path.join(__dirname, 'uploads')); // Use an absolute path
+// 	},
+// 	filename: function (req, file, cb) {
+// 	  const ext = path.extname(file.originalname);
+// 	  cb(null, Date.now() + ext);
+// 	}
+//   });
   
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 const router = express.Router(); 
 
@@ -173,7 +173,8 @@ router.get("/profile", protectRoute, async (req: Request, res: Response) => {
 });
 
 //Update user
-router.put("/profile/update", upload.single('img'), async (req: Request, res: Response) => {
+// upload.single('img') if multer
+router.put("/profile/update", async (req: Request, res: Response) => {
   const user = await updateUser(req);
 
   if (user) {
