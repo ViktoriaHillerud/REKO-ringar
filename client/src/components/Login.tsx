@@ -48,8 +48,8 @@ const Login = () => {
         const { accessToken, uid } = response.data;
 
         // Set the "authtoken" and "uid" cookie with an expiration time (e.g., 2 hours)
-		Cookies.set("authtoken", accessToken, { expires: 2 / 24, path: "/", sameSite: "None" });
-		Cookies.set("uid", uid, { expires: 2 / 24, path: "/", sameSite: "None" });
+		Cookies.set("authtoken", accessToken, { expires: 2 / 24, path: "/", sameSite: "None", secure: true });
+		Cookies.set("uid", uid, { expires: 2 / 24, path: "/", sameSite: "None", secure: true });
 		
 
         navigate("/");
