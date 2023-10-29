@@ -111,6 +111,11 @@ hr {
 .box3 {
   overflow: scroll;
 }
+
+.box2  {
+padding: 1px;
+}
+
 .profile-container h4 {
   margin-top: 100px;
   margin-bottom: 20px;
