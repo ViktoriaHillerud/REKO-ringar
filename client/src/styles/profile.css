@@ -112,8 +112,8 @@ hr {
   overflow: scroll;
 }
 
-.box2  {
-padding: 5vh;
+.box2 p {
+margin-top: 1vh;
 }
 
 .profile-container h4 {
