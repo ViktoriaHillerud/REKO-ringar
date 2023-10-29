@@ -214,23 +214,25 @@ const Profile = () => {
               <p>No gallery images available.</p>
             )}
             <article className="contact">
-              <h4>Kontakt</h4>
-              <h6>Adress: {user.address}</h6>
-              <h6>Tel: {user.phone}</h6>
-              {user.social && user.social.length > 0 ? (
-                <h6>
-                  Sociala medier:
-                  {user.social.map((item, index) => (
-                    <a key={index} target="_blank" href={item}>
-                      <br></br>
+                  <h4>Kontakt</h4>
+                  <h6>Adress:</h6>
+                  <p> {user.address}</p>
+                  <h6>Tel: </h6>
+                  <p>{user.phone}</p>
+                  {user.social && user.social.length > 0 ? (
+                    <h6>
+                      Sociala medier:
+                      {user.social.map((item, index) => (
+                        <a key={index} target="_blank" href={item}>
+                          <br></br>
                           <span>
                             {item.slice(12, 20)} <br></br>
                           </span>
-                    </a>
-                  ))}
-                </h6>
-              ) : null}
-            </article>
+                        </a>
+                      ))}
+                    </h6>
+                  ) : null}
+                </article>
           </section>
         </>
       ) : (
