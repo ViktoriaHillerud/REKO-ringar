@@ -112,7 +112,7 @@ hr {
   overflow: scroll;
 }
 
-.box2 p {
+.box2 > p {
 margin-top: 1vh;
 }
 
