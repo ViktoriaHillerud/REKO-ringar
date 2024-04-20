@@ -57,9 +57,9 @@ const Home = () => {
       {uidFromCookies && userLoggedIn && (
         <h3>Välkommen tillbaka, {userLoggedIn.name}!</h3>
       )}
-      <div className="home-bg">
-        <img src={logga} alt="Reko logga" />
-      </div>
+      
+        <img className="homeImg" src={logga} alt="Reko logga" />
+      
 
       <div className="desc-container">
         <h4>

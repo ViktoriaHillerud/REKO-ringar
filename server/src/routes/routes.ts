@@ -65,9 +65,9 @@ router.post("/login", async (req: Request, res: Response) => {
 
     if (result.accessToken) {
       // Set the token as a cookie in the response
-      res.cookie("authtoken", result.accessToken, {
-        httpOnly: true,
-      });
+    //   res.cookie("authtoken", result.accessToken, {
+     
+    //   });
 
       res.status(201).json({
         data: {

@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import { User, UserDoc } from "../models/userSchema";
 import { env } from "process";
 require("dotenv").config();
-const url = "https://officialu09-production.up.railway.app/";
+const url = "http://127.0.0.1:5173/";
 interface JwtPayload {
   _id: string;
 }
@@ -72,10 +72,10 @@ export const readOneUserPublic = async (uid: string) => {
 //Create(register) new user
 export const createUser = async (req: Request) => {
   try {
-	const { name, email } = req.body;
+	const { email } = req.body;
 
     // Check if the name already exists in the database
-    const existingUser = await User.findOne({ name, email});
+    const existingUser = await User.findOne({ email});
 
     if (existingUser) {
       return { error: { message: 'User with this name already exists.' }, newUser: null, uid: null };
@@ -99,7 +99,10 @@ export const createUser = async (req: Request) => {
     if (error instanceof Error) {
       return { error: { message: error.message }, req: null };
     } else {
-      return { error: { message: "Unknown error" }, req: null };
+      return { error: 
+		{ message: "Unknown error" }, 
+		req: null 
+	};
     }
   }
 };
@@ -108,7 +111,6 @@ export const createUser = async (req: Request) => {
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
-    // Get user input
     const { email, password } = req.body;
 
     // Validate user input
@@ -136,10 +138,7 @@ export const loginUser = async (req: Request, res: Response) => {
         httpOnly: true,
       });
 
-      // Set the "uid" cookie in the response
-      res.cookie("uid", user._id.toString(), {
-        httpOnly: true,
-      });
+    
       // Return both accessToken and user _id in an object
       return { accessToken, uid: user._id.toString() }; // Return as an object
     } else {

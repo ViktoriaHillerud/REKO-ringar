@@ -10,18 +10,18 @@ import router from "./routes/routes";
 const PORT = process.env.PORT || 4000;
 
 
-
-app.use(cookieParser());
-app.use(
-    cors<express.Request>({
-        origin: ['https://main--rekoringar.netlify.app', 'https://rekoringar.netlify.app'], 
-        credentials: true,
-    })
-);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+	cors({
+	  origin: ['http://localhost:5173', 'https://yourfrontenddomain.com'],
+	  credentials: true, 
+	})
+  );
+
 app.use(router);
-app.set('trust proxy', 1)
+
 
 
 

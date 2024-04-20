@@ -219,7 +219,7 @@ const Calendar = () => {
         Authorization: `Bearer ${authToken}`,
       };
 
-      await axios.post("https://officialu09-production.up.railway.app/createevent", eventData, {
+      await axios.post("http://localhost:4000/createevent", eventData, {
         headers,
         withCredentials: true,
       });
@@ -231,7 +231,7 @@ const Calendar = () => {
 
   const handleDatesSet = async () => {
     const response = await axios.get<ResponseData>(
-      "https://officialu09-production.up.railway.app/events/users"
+      "http://localhost:4000/events/users"
     );
 
     setEventData(response.data.users.data.map((item) => item.events).flat());
@@ -304,8 +304,9 @@ const Calendar = () => {
   useEffect(() => {
     try {
       const uid = Cookies.get("uid");
-
+	  console.log(Cookies.get('uid'))
       if (uid) {
+		
         setUserLoggedIn(true);
       } else {
         console.error("UID not found in cookies");

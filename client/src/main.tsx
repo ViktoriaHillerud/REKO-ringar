@@ -10,6 +10,7 @@ import Register from "./components/Register.tsx";
 import Profile from "./components/Profile.tsx";
 import EditProfile from "./components/EditProfile.tsx";
 import Producers from "./components/Producers.tsx";
+import NewProfile from "./components/NewProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: <NewProfile />,
       },
       {
         path: "profile/:id",
-        element: <Profile />,
+        element: <NewProfile/>,
       },
       {
         path: "profile/edit",

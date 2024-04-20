@@ -1,14 +1,17 @@
 import { useState } from "react";
+import Button from "./Button";
 
-const btnStyle = {
-  border: "4px solid green",
+
+const style = {
+    border: "4px solid green",
   borderRadius: "10px",
   padding: "4px",
   fontSize: "13px",
   cursor: "pointer",
-  height: "35px",
-  width: "120px",
-};
+  height: "45px",
+  width: "150px",
+  };
+
 
 const inputStyle = {
   marginRight: "5px",
@@ -36,9 +39,9 @@ const FindProducer = ({ onSearchClick }: SearchProps) => {
         style={inputStyle}
         placeholder="Sök producent"
       />
-      <button onClick={handleSearch} style={btnStyle}>
+      <Button onClick={handleSearch} style={style}>
         Sök
-      </button>
+      </Button>
     </div>
   );
 };

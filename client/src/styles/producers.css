@@ -18,21 +18,31 @@ h1 {
   gap: 10px;
 }
 .producers-card {
-  justify-content: space-between;
+  
   display: flex;
+  flex-direction: column;
   gap: 3%;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   width: 300px;
-  height: 100px;
+  height: 150px;
   overflow: hidden;
 }
+
+.producers-card .header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }
 
 .producers-card span {
   font-size: small;
   font-weight: 100;
 }
 
+.producers-card button {
+	white-space: nowrap;
+  }
 .searched-producer {
   margin: 50px;
 }

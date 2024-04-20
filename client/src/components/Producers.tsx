@@ -67,16 +67,19 @@ function Producers() {
             searchedUser &&
             typeof searchedUser === "object" && (
               <div className="producers-card" key={searchedUser._id}>
-                <div>
+                <div className="header">
                   <p>{searchedUser.name}</p>
-                  <span>{searchedUser.desc}</span>
-                </div>
-                <Button
+				  <Button
                   onClick={() => handleClick(searchedUser._id)}
                   style={style}
                 >
                   Gå till producent
                 </Button>
+				</div>
+                  <span>{searchedUser.desc}</span>
+				
+               
+               
               </div>
             )
           )}
@@ -85,13 +88,14 @@ function Producers() {
           {users
             ? users.map((item) => (
                 <div className="producers-card" key={item._id}>
-                  <div>
+                  <div className="header">
                     <p>{item.name}</p>
-                    <span>{item.desc}</span>
-                  </div>
-                  <Button onClick={() => handleClick(item._id)} style={style}>
+					<Button onClick={() => handleClick(item._id)} style={style}>
                     Gå till producent
                   </Button>
+                  
+                  </div>
+				  <span>{item.desc}</span>
                 </div>
               ))
             : null}

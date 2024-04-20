@@ -90,7 +90,7 @@ function Navbar() {
           </li>
           {uidFromCookies && userLoggedIn ? (
             <li>
-              <Link onClick={handleClickProfile} to="profile">
+              <Link onClick={handleClickProfile} to="/profile">
                 Profil
               </Link>
             </li>

@@ -25,7 +25,7 @@ const Login = () => {
     checkLoggedIn();
   }, [navigate]);
 
-  const handleChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
     setError("");
     setCredentials((prev) => ({
@@ -48,9 +48,19 @@ const Login = () => {
         const { accessToken, uid } = response.data;
 
         // Set the "authtoken" and "uid" cookie with an expiration time (e.g., 2 hours)
-		Cookies.set("authtoken", accessToken, { expires: 2 / 24, path: "/", sameSite: "None", secure: true });
-		Cookies.set("uid", uid, { expires: 2 / 24, path: "/", sameSite: "None", secure: true });
-		
+        Cookies.set("authtoken", accessToken, {
+          expires: 0.5,
+          path: "/",
+		  sameSite: "None",
+		  secure: true,
+        });
+        Cookies.set("uid", uid, {
+          expires: 0.5,
+          path: "/",
+          sameSite: "None",
+	secure: true,
+        });
+        console.log(Cookies.get("uid"));
 
         navigate("/");
       } else {

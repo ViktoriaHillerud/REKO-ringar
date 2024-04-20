@@ -17,7 +17,8 @@ const btnStyle = {
   fontSize: "15px",
   cursor: "pointer",
   width: "200px",
-  margin: "30px auto",
+  margin: "10px auto",
+  textAlign: "center"
 };
 
 const btnStyleRed = {
@@ -27,7 +28,7 @@ const btnStyleRed = {
   fontSize: "15px",
   cursor: "pointer",
   width: "200px",
-  margin: "30px auto",
+  margin: "10px auto",
 };
 
 const btnStyleWarning = {
@@ -241,34 +242,42 @@ const EditProfile = () => {
 
   return (
     <div className="editForm">
-      <Link
+		<div style={{marginBottom: "30px"}}>
+		<Link
         style={{ fontSize: "1.25rem", textDecoration: "none", color: "green" }}
         to="/profile"
       >
         <HiArrowLeft
-          style={{ fontSize: "2rem", marginTop: "20px" }}
+          style={{ fontSize: "2rem", marginTop: "40px"}}
         ></HiArrowLeft>
         Tillbaka
       </Link>
+		</div>
+      
 
       {user && (
 		/* encType="multipart/form-data" if multer*/
-        <form onSubmit={handleSubmit}>
-          <label>Ändra namn:</label>
+        <form  onSubmit={handleSubmit}>
+			
+			<label>Ändra namn:</label>
           <input
             id="name"
             type="text"
             placeholder={user.name}
             onChange={handleChange}
           ></input>
-
-          <label>Ändra beskrivning:</label>
+	
+         
+		
+		 <label>Ändra beskrivning:</label>
           <textarea
             id="desc"
             placeholder={user.desc}
             onChange={handleTextareaChange}
           ></textarea>
 
+
+         
           <label>Ändra utlämningsinfo:</label>
           <input
             id="other"
