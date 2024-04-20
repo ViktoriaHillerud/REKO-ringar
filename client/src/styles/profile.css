@@ -4,61 +4,61 @@ body {
 	margin: 0;
 	padding: 0;
 	background: #fff;
-  }
-  
-  .container {
+}
+
+.container {
 	padding: 20px;
-  }
-  
-  /* Profile styles */
-  .profile-header,
-  .profile-gallery,
-  .profile-info {
-	
+}
+
+/* Profile styles */
+.profile-header,
+.profile-gallery,
+.profile-info {
+
 	border-radius: 8px;
 	padding: 20px;
-	margin-bottom: 20px; /* Space between sections */
-  }
-  
-  /* Image and tags container */
-  .image-and-tags {
+	margin-bottom: 20px;
+}
+
+/* Image and tags container */
+.image-and-tags {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-bottom: 20px; /* Space below image and tags */
-  }
-  
-  .profile-header img.profileImg {
+	margin-bottom: 20px;
+}
+
+.profile-header img.profileImg {
 	border-radius: 50%;
-	width: 80px; /* Adjusted size to match Figma */
-	height: 80px; /* Maintain aspect ratio */
-	object-fit: cover; /* Ensure the image covers the area without distortion */
-  }
-  
-  /* Tags */
-  .profile-tags {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+}
+
+/* Tags */
+.profile-tags {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	
-	gap:10px;
-	width: 190px; /* Full width for mobile */
-	margin-top: 10px; /* Space above tags */
-  }
-  
-  .profile-tags button {
+
+	gap: 10px;
+	width: 190px;
+	margin-top: 10px;
+}
+
+.profile-tags button {
 	background-color: #97db97;
 	border: none;
 	border-radius: 5px;
 	padding: 7px 15px;
 	cursor: pointer;
-	flex: 1; /* Each button takes equal space */
-	margin: 0 5px; /* Spacing between buttons */
-	text-align: center; /* Center text in buttons */
+	flex: 1;
+	margin: 0 5px;
+	text-align: center;
 	width: 80px;
-  }
+}
 
-  .new-section {
+.new-section {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -67,70 +67,70 @@ body {
 	padding: 10%;
 	margin-top: 10%;
 	border-radius: 5%;
-	
-  }
-  
-  /* Gallery styles */
-  .profile-gallery img {
-	width: calc(100% - 40px); /* Full width with padding adjustment */
+
+}
+
+/* Gallery styles */
+.profile-gallery img {
+	width: calc(100% - 40px);
 	border-radius: 8px;
 	margin-bottom: 10px;
-  }
+}
 
-  .editForm {
+.editForm {
 	width: 100%;
-	max-width: 500px; /* Adjust max-width to fit your design */
+	max-width: 500px;
 	margin: auto;
 	padding: 20px;
-  }
-  
-  .editForm input,
-  .editForm textarea {
+}
+
+.editForm input,
+.editForm textarea {
 	width: 100%;
 	padding: 8px;
-	margin-bottom: 10px; /* Adds space below each input */
+	margin-bottom: 10px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-  }
-  
-  .editForm label {
+}
+
+.editForm label {
 	display: block;
 	margin-bottom: 5px;
-  }
-  
-  .editForm .btnContainer {
+}
+
+.editForm .btnContainer {
 	display: flex;
 	justify-content: center;
-	gap: 10px; /* Adds space between buttons if they are side by side */
-	margin-top: 20px; /* Adds space above the button container */
-  }
-  
-  .editForm button {
-	flex: 1; /* Allows buttons to grow and take up equal space */
-	padding: 10px; /* Larger padding for a bigger button */
-	/* other styles remain unchanged */
-  }
-  
-  /* Desktop styles */
-  @media (min-width: 768px) {
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.editForm button {
+	flex: 1;
+	padding: 10px;
+
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
 	.container {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: auto 1fr;
 		gap: 20px;
-	  }
-	
-	  .image-and-tags {
+	}
+
+	.image-and-tags {
 		grid-column: 1 / span 1;
 		grid-row: 1 / span 2;
-	  }
-	
-	  .profile-info {
+	}
+
+	.profile-info {
 		grid-column: 2 / span 1;
 		grid-row: 1 / span 1;
-	  }
-	
-	  .next-drop {
+	}
+
+	.next-drop {
 		margin-top: -80%;
 		display: flex;
 		flex-direction: column;
@@ -139,69 +139,69 @@ body {
 		background-color: #b0de9144;
 		padding: 10%;
 		border-radius: 5%;
-	  }
-	  /* Set up the grid area for the gallery */
-	  .profile-gallery {
-	
+	}
+
+	/* Set up the grid area for the gallery */
+	.profile-gallery {
+
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto 1fr;
 		grid-template-areas:
-		  "gallery-title gallery-title"
-		  "image1 image2"
-		  "image3 image3";
+			"gallery-title gallery-title"
+			"image1 image2"
+			"image3 image3";
 		grid-column: 3 / span 1;
 		grid-row: 1 / span 1;
 		align-items: start;
 		gap: 10px
-	  }
-	
-	  .gallery-title {
+	}
+
+	.gallery-title {
 		grid-area: gallery-title;
 		/* Style your title as needed */
-	  }
-	
-	  /* Individual image styles for gallery */
-	  .profile-gallery img:nth-of-type(1) {
+	}
+
+	/* Individual image styles for gallery */
+	.profile-gallery img:nth-of-type(1) {
 		grid-area: image1;
-	  }
-	
-	  .profile-gallery img:nth-of-type(2) {
+	}
+
+	.profile-gallery img:nth-of-type(2) {
 		grid-area: image2;
-	  }
-	
-	  .profile-gallery img:nth-of-type(3) {
+	}
+
+	.profile-gallery img:nth-of-type(3) {
 		grid-area: image3;
 		/* To make the third image span two columns, you can adjust the column end line */
-	  }
-	
-	  /* Reset styles for desktop that were set for mobile */
-	  .profile-tags button {
-		flex: none; /* Disable flex grow for buttons */
-		margin: 0; /* Reset margin for buttons */
-	  }
-	
-	  .profile-gallery img {
-		width: 100%; /* Full width for images */
-		height: auto; /* Keep the aspect ratio */
-		display: block;
-	  }
-
-	  .new-section {
-	width: 190px
-		
-	  }
-  }
-  
-  /* Mobile styles */
-  @media (max-width: 767px) {
-	.container {
-	  padding: 10px; /* Reduced padding for mobile */
 	}
-  
+
+	/* Reset styles for desktop that were set for mobile */
+	.profile-tags button {
+		flex: none;
+		margin: 0;
+	}
+
+	.profile-gallery img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	.new-section {
+		width: 190px
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+	.container {
+		padding: 10px;
+	}
+
 
 	.next-drop {
-		
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -209,35 +209,34 @@ body {
 		background-color: #b0de9144;
 		padding: 10%;
 		border-radius: 5%;
-	  }
+	}
+
 	.profile-info {
-	  order: -1; /* Move info above image and tags on mobile */
+		order: -1;
 	}
 
 	.new-section {
-    grid-column: 1 / 2; /* Adjust column start / end based on your layout */
-    grid-row: 3; /* Adjust row based on your layout */
-	width: 200px;
-  }
+		grid-column: 1 / 2;
+		grid-row: 3;
+		width: 200px;
+	}
 
-  .editForm {
-	width: 100%;
-	max-width: 500px; /* Adjust max-width to fit your design */
-	margin: auto;
-	padding: 20px;
-  }
-  
-  .editForm input,
-  .editForm textarea {
-	width: 80%;
-	padding: 8px;
-	margin-bottom: 10px; /* Adds space below each input */
-	border: 1px solid #ccc;
-	border-radius: 4px;
-  }
+	.editForm {
+		width: 100%;
+		max-width: 500px;
+		margin: auto;
+		padding: 20px;
+	}
 
-  
- 
+	.editForm input,
+	.editForm textarea {
+		width: 80%;
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
 
-  }
-  
+
+
+}
